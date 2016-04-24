@@ -1,0 +1,12 @@
+<start>
+{{ env['value'] | default('absent') }}
+
+{% if True %}
+# See cetl-kafka-ctx.xml for available values
+{% for e in env -%}
+{%- if e.startswith('KAFKA') %}
+{{ '.'.join(e.lower().split('_')) }}={{ env[e] }}
+{%- endif -%}
+{%- endfor %}
+{% endif %}
+<end>
